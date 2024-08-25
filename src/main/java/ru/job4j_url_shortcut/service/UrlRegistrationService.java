@@ -13,5 +13,5 @@ public interface UrlRegistrationService {
 
     List<UrlStatisticsDTO> findAll();
 
-    void updateTotal(UrlRegistration urlRegistration);
+    void updateTotal(String code);
 }

@@ -26,16 +26,13 @@ public class UrlRegistrationController {
     @GetMapping("/redirect/{code}")
     public ResponseEntity<Void> redirect(@PathVariable String code) {
         UrlRegistration longUrl = this.urlRegistrationService.redirectUrl(code);
-        if (longUrl != null) {
-            int count = longUrl.getTotal();
-            longUrl.setTotal(count + 1);
-            this.urlRegistrationService.updateTotal(longUrl);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setLocation(URI.create(longUrl.getUrl()));
-            return new ResponseEntity<>(headers, HttpStatus.FOUND);
-        } else {
+        if (longUrl == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        this.urlRegistrationService.updateTotal(longUrl.getCode());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create(longUrl.getUrl()));
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 
     @PostMapping

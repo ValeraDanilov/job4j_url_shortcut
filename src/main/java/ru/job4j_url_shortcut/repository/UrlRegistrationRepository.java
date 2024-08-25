@@ -1,5 +1,6 @@
 package ru.job4j_url_shortcut.repository;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import ru.job4j_url_shortcut.dto.UrlStatisticsDTO;
@@ -21,4 +22,10 @@ public interface UrlRegistrationRepository extends CrudRepository<UrlRegistratio
 
     @Query("select new ru.job4j_url_shortcut.dto.UrlStatisticsDTO(u.id, u.url, u.total) from UrlRegistration u")
     List<UrlStatisticsDTO> findAllUrlAndTotal();
+
+    @Modifying
+    @Query("""
+            update UrlRegistration u set u.total = u.total + 1 where u.code = :code
+            """)
+    void update(String code);
 }

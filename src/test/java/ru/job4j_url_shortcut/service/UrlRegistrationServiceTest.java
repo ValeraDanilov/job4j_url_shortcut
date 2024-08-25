@@ -74,7 +74,7 @@ class UrlRegistrationServiceTest {
         when(this.urlRegistrationRepository.findByCode("shortcode")).thenReturn(urlRegistration);
         when(this.urlRegistrationRepository.save(urlRegistration)).thenReturn(urlRegistration);
 
-        this.urlRegistrationService.updateTotal(urlRegistration);
-        verify(this.urlRegistrationRepository, times(1)).save(urlRegistration);
+        this.urlRegistrationService.updateTotal(urlRegistration.getCode());
+        verify(this.urlRegistrationRepository, times(1)).update(urlRegistration.getCode());
     }
 }

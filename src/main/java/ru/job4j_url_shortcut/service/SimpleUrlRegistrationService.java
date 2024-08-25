@@ -2,6 +2,7 @@ package ru.job4j_url_shortcut.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.job4j_url_shortcut.dto.UrlStatisticsDTO;
 import ru.job4j_url_shortcut.model.UrlRegistration;
 import ru.job4j_url_shortcut.repository.UrlRegistrationRepository;
@@ -36,7 +37,8 @@ public class SimpleUrlRegistrationService implements UrlRegistrationService {
         return urlRegistrationRepository.findAllUrlAndTotal();
     }
 
-    public void updateTotal(UrlRegistration urlRegistration) {
-        this.urlRegistrationRepository.save(urlRegistration);
+    @Transactional
+    public void updateTotal(String code) {
+        this.urlRegistrationRepository.update(code);
     }
 }

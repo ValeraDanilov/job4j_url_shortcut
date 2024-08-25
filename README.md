@@ -57,22 +57,19 @@ This project uses the following technologies and libraries:
 4. **PostgreSQL**:
     - PostgreSQL database driver for database connection.
 
-5. **Apache Commons DBCP**:
-    - Database connection pooling with `commons-dbcp2`.
-
-6. **H2 Database**:
+5. **H2 Database**:
     - In-memory H2 database for runtime testing.
 
-7. **Lombok**:
+6. **Lombok**:
     - Code reduction for boilerplate code like getters, setters, and constructors.
 
-8. **JUnit 5**:
+7. **JUnit 5**:
     - Unit testing using `junit-jupiter-api`, `junit-jupiter-engine`, and `junit-platform-launcher`.
 
-9. **Mockito**:
+8. **Mockito**:
     - Mocking objects for testing with `mockito-core`.
 
-10. **Plugins**:
+9. **Plugins**:
     - Unit testing with `maven-surefire-plugin`.
     - Spring Boot application packaging and running with `spring-boot-maven-plugin`.
     - Test coverage reporting with `jacoco-maven-plugin`.
